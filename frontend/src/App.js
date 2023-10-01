@@ -2,7 +2,7 @@ import './App.css';
 import Home from './pages/Home';
 import { BrowserRouter as Router,Routes, Route} from 'react-router-dom';
 import TenantLogin from './pages/Tenant/tenantLogin';
-import TenantRegister from './pages/tenantRegister';
+import TenantRegister from './pages/Tenant/tenantRegister';
 
 function App() {
   return (
