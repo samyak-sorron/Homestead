@@ -1,9 +1,12 @@
-import { Card } from "../components"
-import { useState } from 'react'
+import { Card, Navbar } from "../components"
+import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 
 export default function Home() {
   
+  useEffect(() => {
+    document.title='Homestead';
+  }, [])
 
   // const [id, setId] = useState(null)
   const element=(arr,index)=>arr.map(
@@ -19,6 +22,7 @@ export default function Home() {
 
   return (
     <div>
+      <Navbar/>
       <hr/>
       {element}
       
