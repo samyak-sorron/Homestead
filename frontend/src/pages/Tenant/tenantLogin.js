@@ -10,6 +10,18 @@ const TenantLogin = () => {
         email:'',
         password:''
     })
+
+    const handleChange=(event)=>{
+        setDetails({
+            ...details,
+            [event.target.name]:event.target.value
+        });        
+    }
+
+    const handleSubmit=()=>{
+
+    }
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="bg-white p-8 rounded shadow-md w-80">
@@ -17,13 +29,13 @@ const TenantLogin = () => {
         <form>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600">Email</label>
-            <input type="email" className="mt-1 p-2 w-full border rounded" />
+            <input type="email"  name='email' value={details.email} onChange={handleChange} className="mt-1 p-2 w-full border rounded" />
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600">Password</label>
-            <input type="password" className="mt-1 p-2 w-full border rounded" />
+            <input type="password" name='password' value={details.password} onChange={handleChange} className="mt-1 p-2 w-full border rounded" />
           </div>
-          <button className="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+          <button onSubmit={handleSubmit} className="bg-blue-500 text-white p-2 rounded w-full hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
             Login
           </button>
         </form>

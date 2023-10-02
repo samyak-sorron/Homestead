@@ -11,7 +11,7 @@ export default function Home() {
   // const [id, setId] = useState(null)
   const element=(arr,index)=>arr.map(
     <div className="grid grid-rows-4 md:grid-row-3 sm:grid-row-2">
-      <Link to='' ><Card
+      <Link to=''><Card
         id={index}
         name={arr[index].name}
         prompt="2 dogs under the street light"
