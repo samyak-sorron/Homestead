@@ -1,7 +1,8 @@
 import React,{useState,useEffect} from 'react'
 import { Navbar } from '../../components'
 
-const URL="localhost:8080";
+// const URL="localhost:8080";
+
 const OwnerDashboard = () => {
     const [name, setName] = useState('John Doe');
 
@@ -17,7 +18,7 @@ const OwnerDashboard = () => {
            <img className='w-full h-auto object-cover rounded-xl mb-8' 
                 src='https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1600' 
                 alt='hehe'
-            ></img> 
+            ></img>
            <div>
             <h1>{name}</h1>
             <p>location</p>

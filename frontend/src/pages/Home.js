@@ -1,6 +1,7 @@
 import { Card, Navbar } from "../components"
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
+import { city  } from "../assets"
 
 export default function Home() {
   
@@ -23,6 +24,7 @@ export default function Home() {
   return (
     <div>
       <Navbar/>
+      <div className="w-full absolute z-20"><img src={city} alt="city" className="w-full h-[25rem] sm:h-[27rem] object-cover"/></div>
       <hr/>
       {element}
       
