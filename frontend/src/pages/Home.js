@@ -24,10 +24,17 @@ export default function Home() {
   return (
     <div>
       <Navbar/>
-      <div className="w-full absolute z-20"><img src={city} alt="city" className="w-full h-[25rem] sm:h-[27rem] object-cover"/></div>
-      <hr/>
-      {element}
-      
+      <div className="relative w-full h-[27rem] sm:h-[27rem]">
+        <img src={city} alt="city" className="w-full h-full object-cover" />
+        <div className="absolute top-48 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center">
+          <h1 className="text-4xl mb-4 font-semibold antialiased">Your Home Away from Home</h1>
+          <h1 className="text-4xl font-semibold antialiased">Where Comfort Meets Convenience</h1>
+        </div>
+      </div>
+      <div>
+        
+      </div>  
+      {element}   
     </div>
   )
 }
