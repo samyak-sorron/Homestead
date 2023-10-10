@@ -15,7 +15,7 @@ function App() {
       <Routes>
         
         <Route path="/" exact element={<Home />} />
-        <Route path="/property-detail" element={<PropertyDetail />} />
+        <Route path="/property-detail/:property_id" element={<PropertyDetail />} />
 
         {/* Tenant */}
         <Route path="/tenant-login" element={<TenantLogin />} />
