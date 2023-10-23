@@ -6,7 +6,6 @@ const URL='http://localhost:8080/api/v1/';
 
 const TenantLogin = () => {
 
-
     useEffect(() => {
         document.title='Login';
     }, [])
@@ -30,19 +29,18 @@ const TenantLogin = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(details),
       };
-  
-      try {
-        const response = await fetch(URL+'tenant/login', requestOptions);
-        if (response.ok) {
-          // Data posted successfully
-          console.log('Data posted successfully');
-        } else {
-          // Handle error
-          console.error('Error posting data');
-        }
+
+    try {
+      if(details.email && details.password){
+        await fetch(URL+'tenant/login', requestOptions)
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error))
+      }
+      else{
+        console.log('invalid input');
+      }
       } catch (error) {
-        // Handle network or other errors
-        console.error('Network or other error', error);
+        console.log(error);
       }
     }
 
