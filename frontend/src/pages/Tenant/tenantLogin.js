@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const TenantLogin = () => {
 
@@ -18,8 +19,20 @@ const TenantLogin = () => {
         });        
     }
 
-    const handleSubmit=()=>{
+    const handleSubmit=(e)=>{
+      e.preventDefault();
 
+      try {
+        if(details.name && details.password){
+          axios.post()
+          .then(res=>console.log(res))
+        }
+        else{
+          console.log('invalid input');
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
 
   return (
