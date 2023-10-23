@@ -2,7 +2,11 @@ import React,{useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+const URL='http://localhost:8080/api/v1/';
+
+
 const TenantLogin = () => {
+
 
     useEffect(() => {
         document.title='Login';
@@ -19,13 +23,20 @@ const TenantLogin = () => {
         });        
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit=async(e)=>{
       e.preventDefault();
 
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(details),
+      };
+
       try {
-        if(details.name && details.password){
-          axios.post()
+        if(details.email && details.password){
+          await fetch(URL+'tenant/login', requestOptions)
           .then(res=>console.log(res))
+          .catch(error=>console.log(error))
         }
         else{
           console.log('invalid input');

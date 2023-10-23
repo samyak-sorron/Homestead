@@ -1,6 +1,8 @@
 import React,{useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
 
+const URL='http://localhost:8080/api/v1/';
+
 const OwnerLogin = () => {
 
     useEffect(() => {
@@ -18,9 +20,29 @@ const OwnerLogin = () => {
         });        
     }
 
-    const handleSubmit=()=>{
+    const handleSubmit=async(e)=>{
+      e.preventDefault();
 
-    }
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(details),
+      };
+  
+      try {
+        const response = await fetch(URL+'', requestOptions);
+        if (response.ok) {
+          // Data posted successfully
+          console.log('Data posted successfully');
+        } else {
+          // Handle error
+          console.error('Error posting data');
+        }
+      } catch (error) {
+        // Handle network or other errors
+        console.error('Network or other error', error);
+      }
+    };
 
   return (
     <div className="flex justify-center items-center h-screen">
