@@ -26,8 +26,27 @@ const TenantRegister = () => {
   console.log(details);
   console.log(cnfpassword);
 
-  const handleSubmit=()=>{
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
 
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(details),
+    };
+
+    try {
+      if(details.email && details.fname && details.lname && details.password){
+        await fetch(URL+'tenant/register', requestOptions)
+        .then(res=>console.log(res))
+        .catch(error=>console.log(error))
+      }
+      else{
+        console.log('invalid input');
+      }
+    }catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -59,7 +78,7 @@ const TenantRegister = () => {
             }
           </div>
           
-          <button className="bg-green-500 text-white p-2 rounded w-full hover:bg-green-600 focus:outline-none focus:ring focus:border-green-300">
+          <button onClick={handleSubmit} className="bg-green-500 text-white p-2 rounded w-full hover:bg-green-600 focus:outline-none focus:ring focus:border-green-300">
             Register
           </button>
         </form>

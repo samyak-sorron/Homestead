@@ -28,21 +28,20 @@ const OwnerLogin = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(details),
       };
-  
+
       try {
-        const response = await fetch(URL+'', requestOptions);
-        if (response.ok) {
-          // Data posted successfully
-          console.log('Data posted successfully');
-        } else {
-          // Handle error
-          console.error('Error posting data');
+        if(details.email && details.password){
+          await fetch(URL+'tenant/login', requestOptions)
+          .then(res=>console.log(res))
+          .catch(error=>console.log(error))
         }
-      } catch (error) {
-        // Handle network or other errors
-        console.error('Network or other error', error);
+        else{
+          console.log('invalid input');
+        }
+      }catch (error) {
+        console.log(error);
       }
-    };
+    }
 
   return (
     <div className="flex justify-center items-center h-screen">

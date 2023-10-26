@@ -2,7 +2,7 @@ const loginTenantController=(req,res)=>{
     
 }
 
-const registerTenantController=()=>{}
+const registerTenantController=(req,res)=>{}
 
 
 

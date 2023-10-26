@@ -30,16 +30,16 @@ const TenantLogin = () => {
         body: JSON.stringify(details),
       };
 
-    try {
-      if(details.email && details.password){
-        await fetch(URL+'tenant/login', requestOptions)
-        .then(res=>console.log(res))
-        .catch(error=>console.log(error))
-      }
-      else{
-        console.log('invalid input');
-      }
-      } catch (error) {
+      try {
+        if(details.email && details.password){
+          await fetch(URL+'tenant/login', requestOptions)
+          .then(res=>console.log(res))
+          .catch(error=>console.log(error))
+        }
+        else{
+          console.log('invalid input');
+        }
+      }catch (error) {
         console.log(error);
       }
     }
