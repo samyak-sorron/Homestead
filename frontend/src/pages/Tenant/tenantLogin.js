@@ -1,10 +1,12 @@
 import React,{useEffect,useState} from 'react';
 import { Link } from 'react-router-dom';
 
-const URL='http://localhost:8080/api/v1/';
+const URL='http://localhost:8080/api/v1/tenant';
 
 
 const TenantLogin = () => {
+
+    const [status, setStatus] = useState();
 
     useEffect(() => {
         document.title='Login';
@@ -32,8 +34,11 @@ const TenantLogin = () => {
 
       try {
         if(details.email && details.password){
-          await fetch(URL+'tenant/login', requestOptions)
-          .then(res=>console.log(res))
+          await fetch(URL+'/login', requestOptions)
+          .then(res=>{
+            if(res.body==='success')  setStatus(true);
+            else setStatus(false);
+          })
           .catch(error=>console.log(error))
         }
         else{
@@ -49,6 +54,10 @@ const TenantLogin = () => {
       <div className="bg-white p-8 rounded shadow-md w-80">
         <h2 className="text-2xl mb-4">Login</h2>
         <form>
+        {status? 
+          <p className='text-green'>Login Successful</p>:
+          <p className='text-red'>Either email or Password is Wrong or Register before Login</p>
+        }
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600">Email</label>
             <input type="email"  name='email' value={details.email} onChange={handleChange} className="mt-1 p-2 w-full border rounded" />

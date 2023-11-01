@@ -13,15 +13,19 @@ const Dropdown = ({logedin}) => {
         <ul className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           {logedin ? (
             <>
-              <li><a href="/dashboard" className='text-gray-700 block px-4 py-2 text-sm'>Dashboard</a></li>
+            {logedin.cat==="owner"?
+            <li><a href="/owner-dashboard" className='text-gray-700 block px-4 py-2 text-sm'>Dashboard</a></li>:
+            <li><a href="/tenant-dashboard" className='text-gray-700 block px-4 py-2 text-sm'>Dashboard</a></li>
+            }
+              
               <li><a href="/logout" className='text-gray-700 block px-4 py-2 text-sm'>Logout</a></li>
             </>
           ) 
           :
           (
             <>
-              <li><a href="/tenant-login" className='text-gray-700 block px-4 py-2 text-sm'>Login</a></li>
-              <li><a href="/tenant-register" className='text-gray-700 block px-4 py-2 text-sm'>Register</a></li>
+              <li><a href="/tenant-login" className='text-gray-700 block px-4 py-2 text-sm'>Tenant Sign In</a></li>
+              <li><a href="/owner-login" className='text-gray-700 block px-4 py-2 text-sm'>Owner Sign In</a></li>
             </>
           )}
         </ul>
