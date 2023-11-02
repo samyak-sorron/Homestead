@@ -12,10 +12,9 @@ function App() {
   return (
     <Router>
       
-      <Routes>
-        
+      <Routes>        
         <Route path="/" exact element={<Home />} />
-        <Route path="/property-detail/:property_id" element={<PropertyDetail />} />
+        <Route path="/propertyDetails/:property_id" element={<PropertyDetail />} />
 
         {/* Tenant */}
         <Route path="/tenant-login" element={<TenantLogin />} />

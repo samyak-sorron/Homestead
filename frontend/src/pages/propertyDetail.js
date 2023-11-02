@@ -1,10 +1,25 @@
 import React,{useEffect, useState} from 'react'
 import {Navbar} from '../components'
+import { useParams } from 'react-router-dom'
 
 const PropertyDetail = () => {
-    useEffect(()=>{
-        document.title='Property Details'
-    })
+  
+  const [Details, setDetails] = useState({})
+
+  let property_id = useParams();
+
+  useEffect(()=>{
+      document.title='Property Details'
+
+      try {
+        fetch(URL+`/property-detail/${property_id}`,{})
+        .then(res=>{
+          setDetails(res.data)
+        });
+      } catch (error) {
+        console.log(error);
+      }
+  })
   return (
     <div>
         <Navbar/>

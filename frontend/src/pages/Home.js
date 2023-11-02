@@ -2,6 +2,7 @@ import { Card, Navbar } from "../components"
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import { city  } from "../assets"
+import { house1 } from "../assets"
 
 export default function Home() {
   
@@ -24,17 +25,50 @@ export default function Home() {
         </div>
       </div>
       {/* top rated property listed */}
-      <h1 className="text-4xl">Top Rated Property </h1>
-      {propertyData && propertyData.map((arr,index)=>
-        <div className="grid grid-rows-4 md:grid-row-3 sm:grid-row-2">
-          <Link to={`/propertyDetails/${arr.id}`}><Card
+      <h1 className="text-4xl text-center mb-4 mt-10">Recommendations </h1>
+      <div className="grid md:grid-cols-3 gap-5 sm:grid-cols-2 place-items-center">
+      {propertyData && propertyData.map((listing,index)=>
+        <div className="">
+          <Link to={`/propertyDetails/${index}`}>
+          <Card
             id={index}
-            name={arr[index].name}
+            name={listing[index].name}
             prompt="2 dogs under the street light"
-            photo={arr[index]}
+            photo={listing[index]}
           /></Link>
         </div>
-      )}
+      )}</div>
+      <div className="">
+        <div className="grid md:grid-cols-3 gap-5 sm:grid-cols-2 place-items-center">
+      <div className="">
+          <Link to={`/propertyDetails/2`}>
+          <Card
+            id={2}
+            name={"property"}
+            prompt="2 dogs under the street light"
+            photo={house1}
+          /></Link>
+        </div>
+        <div className="">
+          <Link to={`/propertyDetails/3`}>
+          <Card
+            id={3}
+            name={"property"}
+            prompt="2 dogs under the street light"
+            photo={house1}
+          /></Link>
+        </div>
+        <div className="">
+          <Link to={`/propertyDetails/4`}>
+          <Card
+            id={4}
+            name={"property"}
+            prompt="2 dogs under the street light"
+            photo={house1}
+          /></Link>
+        </div>
+        </div>
+        </div>
     </div>
   )
 }
