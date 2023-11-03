@@ -4,7 +4,7 @@ import { loginOwnerController, registerOwnerController } from '../controllers/ow
 const router= express.Router();
 
 router.route('/').get((req,res)=>{
-    res.status(200).send('Owner Routes')
+    res.status(200).send('Owner Routes is working')
 })
 
 router.post('/login',loginOwnerController);
