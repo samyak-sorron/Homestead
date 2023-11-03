@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const ownerSchema= new mongoose.Schema({
-    name:{
+    name:{       
         type:String,
         required:[true,'name is required']
     },
