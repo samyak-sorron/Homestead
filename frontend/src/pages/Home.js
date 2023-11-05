@@ -39,7 +39,7 @@ export default function Home() {
         </div>
       )}</div>
       <div className="">
-        <div className="grid md:grid-cols-3 gap-5 sm:grid-cols-2 place-items-center">
+        <div className="grid md:grid-cols-3 gap-5 grid-cols-2 place-items-center">
       <div className="">
           <Link to={`/propertyDetails/2`}>
           <Card

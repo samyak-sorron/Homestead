@@ -3,6 +3,7 @@ import {Navbar} from '../../components'
 import {Link, useParams} from "react-router-dom";
 import {GoLocation} from 'react-icons/go'
 import {AiOutlineWifi,AiOutlineCar} from 'react-icons/ai'
+import {Card} from '../../components'
 
 import {house1} from '../../assets';
 
@@ -55,14 +56,52 @@ const PropertyDetail = () => {
           </div>
         </div>
         <hr/>
-        <div className='p-2'>
+        <div className='p-2 mb-4'>
           <h1 className='text-2xl mb-3'>Aminities</h1>
           <ul className='grid grid-cols-4 gap-4'>
             <li className='flex align-middle'><AiOutlineWifi className='text-xl'/> WiFi</li>
             <li className='flex align-middle'><AiOutlineCar className='text-xl'/> Free Parking</li>
           </ul>
         </div>
+        <div>
+          <h1 className='text-2xl mb-2'>Suggestions</h1>
+          <div></div>
+        </div>
+        <hr/>
+        <div className=" mt-2">
+        <div className="grid md:grid-cols-3 gap-5 grid-cols-2 place-items-center">
+      <div className="">
+          <Link to={`/propertyDetails/2`}>
+          <Card
+            id={2}
+            name={"property"}
+            prompt="2 dogs under the street light"
+            photo={house1}
+          /></Link>
+        </div>
+        <div className="">
+          <Link to={`/propertyDetails/3`}>
+          <Card
+            id={3}
+            name={"property"}
+            prompt="2 dogs under the street light"
+            photo={house1}
+          /></Link>
+        </div>
+        <div className="">
+          <Link to={`/propertyDetails/4`}>
+          <Card
+            id={4}
+            name={"property"}
+            prompt="2 dogs under the street light"
+            photo={house1}
+          /></Link>
+        </div>
+        </div>
+        </div>
       </div>
+      
+      
       
     </div>
   );
