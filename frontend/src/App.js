@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import { BrowserRouter as Router,Routes, Route} from 'react-router-dom';
 import TenantLogin from './pages/Tenant/tenantLogin';
 import TenantRegister from './pages/Tenant/tenantRegister';
-import PropertyDetail from './pages/propertyDetail';
+import PropertyDetail from './pages/Property/propertyDetail';
 import OwnerDashboard from './pages/Owner/ownerDashboard';
 import OwnerLogin from './pages/Owner/ownerLogin';
 import OwnerRegister from './pages/Owner/ownerResigter';
