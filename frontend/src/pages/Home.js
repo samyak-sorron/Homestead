@@ -25,7 +25,12 @@ export default function Home() {
         </div>
       </div>
       {/* top rated property listed */}
-      <h1 className="text-4xl text-center mb-4 mt-10">Recommendations </h1>
+      <div className='mx-auto max-w-screen-xl'>
+      <div className="flex justify-between mt-10">
+        <h1 className="text-4xl text-center mb-4">Recommendations </h1>
+        <Link className="underline text-blue-500 align-baseline" to='/propertyList'>see all</Link>
+      </div>
+      
       <div className="grid md:grid-cols-3 gap-5 sm:grid-cols-2 place-items-center">
       {propertyData && propertyData.map((listing,index)=>
         <div className="">
@@ -66,6 +71,7 @@ export default function Home() {
             prompt="2 dogs under the street light"
             photo={house1}
           /></Link>
+        </div>
         </div>
         </div>
         </div>
