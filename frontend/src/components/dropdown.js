@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import {FaRegUserCircle} from "react-icons/fa"
 
-const Dropdown = ({logedin}) => {
+const Dropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const ownerLoginStatus=localStorage.getItem('ownerLoginStatus')
+  let tenantLoginStatus=false;
+  if(!ownerLoginStatus) {
+    tenantLoginStatus=localStorage.getItem('tenantLoginStatus')
+  }
 
   return (
     <div className="">
@@ -11,14 +17,20 @@ const Dropdown = ({logedin}) => {
       </button>
       {isOpen && (
         <ul className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          {logedin ? (
+          {ownerLoginStatus || tenantLoginStatus ? (
             <>
-            {logedin.cat==="owner"?
-            <li><a href="/owner-dashboard" className='text-gray-700 block px-4 py-2 text-sm'>Dashboard</a></li>:
-            <li><a href="/tenant-dashboard" className='text-gray-700 block px-4 py-2 text-sm'>Dashboard</a></li>
+            {ownerLoginStatus &&
+            <>
+              <li><a href="/owner-dashboard" className='text-gray-700 block px-4 py-2 text-sm'>Dashboard</a></li>
+              <li><a href="/owner-logout" className='text-gray-700 block px-4 py-2 text-sm'>Logout</a></li>
+            </>
             }
-              
-              <li><a href="/logout" className='text-gray-700 block px-4 py-2 text-sm'>Logout</a></li>
+            {tenantLoginStatus &&
+            <>
+              <li><a href="/tenant-dashboard" className='text-gray-700 block px-4 py-2 text-sm'>Dashboard</a></li>
+              <li><a href="/tenant-logout" className='text-gray-700 block px-4 py-2 text-sm'>Logout</a></li>
+            </>
+            }
             </>
           ) 
           :

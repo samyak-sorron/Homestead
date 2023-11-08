@@ -23,25 +23,44 @@ const TenantLogin = () => {
         });        
     }
 
-    const handleSubmit=async(e)=>{
+    const handleSubmit=async (e)=>{
       e.preventDefault();
-
+  
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(details),
       };
-
+  
       try {
         if(details.email && details.password){
-          await fetch(URL+'/login', requestOptions)
-          .then(res=>{
-            if(res.body==='success')  setStatus(true);
-            else setStatus(false);
+          await fetch(URL + '/login', requestOptions)
+          .then(res => {
+            if (res.ok) {
+              localStorage.setItem('tenantLoginStatus',true);
+              // localStorage.setItem('tenantId',res.data.tenant_id);
+              return res.json();
+            } else {
+              throw new Error('Network response was not ok.');
+            }
           })
-          .catch(error=>console.log(error))
+          .then(data => {
+            
+            if (data.success === true) {
+              setStatus(true);
+
+              setTimeout(() => {
+                window.location.href = '/';
+              }, 3000);
+            }
+            console.log(data);
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });      
         }
         else{
+          setStatus(false);
           console.log('invalid input');
         }
       }catch (error) {
@@ -55,8 +74,8 @@ const TenantLogin = () => {
         <h2 className="text-2xl mb-4">Login</h2>
         <form>
         {status? 
-          <p className='text-green'>Login Successful</p>:
-          <p className='text-red'>Either email or Password is Wrong or Register before Login</p>
+          <p className='text-green-500'>Login Successful</p>:
+          <p className='text-red-500'>Either email or Password is Wrong or Register before Login</p>
         }
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600">Email</label>

@@ -1,8 +1,7 @@
 import { Card, Navbar } from "../components"
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
-import { city  } from "../assets"
-import { house1 } from "../assets"
+import { city ,house1  } from "../assets"
 
 export default function Home() {
   
