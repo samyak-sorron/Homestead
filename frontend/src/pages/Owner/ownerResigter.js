@@ -1,30 +1,31 @@
 import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
+const URL='http://localhost:8080/api/v1/owner';
+
 const OwnerRegister = () => {
 
-    useEffect(() => {
-      document.title='Register';
-    }, [])
-    
-    const [details, setDetails] = useState({
-        fname:'',
-        lname:'',
-        email:'',
-        password:''
-    })
+  useEffect(() => {
+    document.title='Register';
+  }, [])
+  
+  const [details, setDetails] = useState({
+      fname:'',
+      lname:'',
+      email:'',
+      password:'',
+      phone:''
+  })
 
-    const [cnfpassword, setcnfpassword] = useState('')
+  const [cnfpassword, setcnfpassword] = useState('')
 
-    const handleChange=(event)=>{
-      setDetails({
-          ...details,
-          [event.target.name]:event.target.value
-      });        
+  const handleChange=(event)=>{
+    setDetails({
+        ...details,
+        [event.target.name]:event.target.value
+    }); 
+    console.log(details);       
   }
-
-  console.log(details);
-  console.log(cnfpassword);
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
@@ -36,9 +37,9 @@ const OwnerRegister = () => {
     };
 
     try {
-      if(details.email && details.fname && details.lname && details.password){
-        await fetch(URL+'owner/register', requestOptions)
-        .then(res=>console.log(res))
+      if(details.email && details.fname && details.password && details.phone){
+        await fetch(URL+'/register', requestOptions)
+        .then(res=>console.log(1))
         .catch(error=>console.log(error))
       }
       else{
@@ -65,6 +66,10 @@ const OwnerRegister = () => {
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600">Email</label>
             <input type="email" name='email' value={details.email} onChange={handleChange} className="mt-1 p-2 w-full border rounded" />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-600">Ph. No.</label>
+            <input type="tel" name='phone' value={details.phone} onChange={handleChange} className="mt-1 p-2 w-full border rounded" />
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600">Password</label>

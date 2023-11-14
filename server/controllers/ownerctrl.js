@@ -5,15 +5,15 @@ import jwt from 'jsonwebtoken'
 // const moment = require('moment')
 
 
-async function insert(){
-await ownerModel.create({
-    name:"Vishal Yadav",
-    email:"vishal@gmail.com",
-    password:"Vishal123",
-    phone: "9171619017"
-});
-}
-insert();
+// async function insert(){
+// await ownerModel.create({
+//     name:"Vishal Yadav",
+//     email:"vishal@gmail.com",
+//     password:"Vishal123",
+//     phone: "9171619017"
+// });
+// }
+// insert();
 
 // Controller to be made for=>
 // createUser,
@@ -38,9 +38,16 @@ const registerOwnerController=async(req,res)=>{
     //     console.log(error)
     //     res.status(500).send({success:false, message: 'Register Conroller ${error.message}'})
     // }
-
-    ownerModel.create(req.body)
-    .then(owner=> res.json(owner))
+    const data=req.body;
+    await ownerModel.create({
+        name:data.fname+' '+data.lname,
+        email:data.email,
+        password:data.password,
+        phone: data.phone        
+    })
+    .then(user=> {
+        if(user)    res.status(200).send({message:'data stored',success:true})
+    })
     .catch(error=>res.json(error))
 }
 

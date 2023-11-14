@@ -89,7 +89,7 @@ const OwnerLogin = () => {
           </button>
         </form>
         <p className="text-sm mt-4">
-          Don't have an account? <Link to="/tenant-register" className="text-blue-500">Register here</Link>.
+          Don't have an account? <Link to="/owner-register" className="text-blue-500">Register here</Link>.
         </p>
       </div>
     </div>
