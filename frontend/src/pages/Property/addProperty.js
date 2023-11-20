@@ -12,12 +12,12 @@ const AddProperty = () => {
         amenities: [],
     });
     
-     const handleChange = (e) => {
-        const { name, value } = e.target;
+    const handleChange = (e) => {
+        const {name,value} = e.target;
         setFormData({ ...formData, [name]: value });
-     };
+    };
     
-     const handleCheckboxChange = (e) => {
+     const handleCheckboxChange=(e) => {
         const { name, checked } = e.target;
         if (checked) {
           setFormData({ ...formData, amenities: [...formData.amenities, name] });
@@ -156,7 +156,7 @@ const AddProperty = () => {
                 <input
                   type="checkbox"
                   className="form-checkbox"
-                  name="Wi-Fi"
+                  name="Parking"
                   checked={formData.amenities.includes('Parking')}
                   onChange={handleCheckboxChange}
                 />
@@ -166,7 +166,7 @@ const AddProperty = () => {
                 <input
                   type="checkbox"
                   className="form-checkbox"
-                  name="Wi-Fi"
+                  name="Pets"
                   checked={formData.amenities.includes('Pets')}
                   onChange={handleCheckboxChange}
                 />
