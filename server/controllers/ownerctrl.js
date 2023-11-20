@@ -23,10 +23,10 @@ import jwt from 'jsonwebtoken'
 
 const registerOwnerController=async(req,res)=>{
     // try{
-    //     const existingUser=await ownerModel.findOne({email:req.body.email})
-    //     if(existingUser){
-    //         return res.status(200).send({message:'user already exist', success:false})
-    //     }
+        const existingUser=await ownerModel.findOne({email:req.body.email})
+        if(existingUser){
+            return res.status(203).send({message:'user already exist', success:false})
+        }
     //     const password=req.body.password
     //     const salt= await bcrypt.genSalt(10)
     //     const hashedPassword =await bcrypt.hash(password,salt)

@@ -1,20 +1,27 @@
 import React,{useState,useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
+const URL='http://localhost:8080/api/v1/tenant';
+
+
 const TenantRegister = () => {
 
     useEffect(() => {
       document.title='Register';
     }, [])
+
     
     const [details, setDetails] = useState({
-        fname:'',
-        lname:'',
-        email:'',
-        password:''
-    })
+      fname:'',
+      lname:'',
+      email:'',
+      password:'',
+      phone:''
+  })
 
-    const [cnfpassword, setcnfpassword] = useState('')
+  const [cnfpassword, setcnfpassword] = useState('')
+
+  const [status, setStatus] = useState(0)
 
     const handleChange=(event)=>{
       setDetails({
@@ -22,9 +29,6 @@ const TenantRegister = () => {
           [event.target.name]:event.target.value
       });        
   }
-
-  console.log(details);
-  console.log(cnfpassword);
 
   const handleSubmit=async(e)=>{
     e.preventDefault();
@@ -36,9 +40,18 @@ const TenantRegister = () => {
     };
 
     try {
-      if(details.email && details.fname && details.lname && details.password){
-        await fetch(URL+'tenant/register', requestOptions)
-        .then(res=>console.log(res))
+      if(details.email && details.fname && details.password && details.phone){
+        await fetch(URL+'/register', requestOptions)
+        .then(res=>{
+          console.log(res);
+          if(res.status===203)  setStatus(-1);
+          else if(res.status===200){
+            setStatus(1)
+            setTimeout(() => {
+              window.location.href = '/tenant-login';
+            }, 3000);
+          };
+        })
         .catch(error=>console.log(error))
       }
       else{
@@ -54,6 +67,12 @@ const TenantRegister = () => {
       <div className="bg-white p-8 rounded shadow-md w-80">
         <h2 className="text-2xl mb-4">Register</h2>
         <form>
+          {status===-1 &&
+            <p className='text-red-500 text-center'>The user with email already exist. either login or forget password</p>
+          }
+          {status===1 &&
+            <p className='text-green-500 self-center'>Successfully Registerd</p>
+          }
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600">First Name</label>
             <input type="text" name='fname' value={details.fname} onChange={handleChange} className="mt-1 p-2 w-full border rounded" />
@@ -66,6 +85,11 @@ const TenantRegister = () => {
             <label className="block text-sm font-medium text-gray-600">Email</label>
             <input type="email" name='email' value={details.email} onChange={handleChange} className="mt-1 p-2 w-full border rounded" />
           </div>
+
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-600">Ph. No.</label>
+            <input type="tel" name='phone' value={details.phone} onChange={handleChange} className="mt-1 p-2 w-full border rounded" />
+          </div>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600">Password</label>
             <input type="password" name='password' value={details.password} onChange={handleChange} className="mt-1 p-2 w-full border rounded" />
@@ -77,7 +101,7 @@ const TenantRegister = () => {
               <div className='text-sm text-red-700 text-opacity-50'>password does not match the Password you entered.</div>
             }
           </div>
-          
+         
           <button onClick={handleSubmit} className="bg-green-500 text-white p-2 rounded w-full hover:bg-green-600 focus:outline-none focus:ring focus:border-green-300">
             Register
           </button>

@@ -19,12 +19,13 @@ const OwnerRegister = () => {
 
   const [cnfpassword, setcnfpassword] = useState('')
 
+  const [status, setStatus] = useState(0)
+
   const handleChange=(event)=>{
     setDetails({
         ...details,
         [event.target.name]:event.target.value
     }); 
-    console.log(details);       
   }
 
   const handleSubmit=async(e)=>{
@@ -39,7 +40,15 @@ const OwnerRegister = () => {
     try {
       if(details.email && details.fname && details.password && details.phone){
         await fetch(URL+'/register', requestOptions)
-        .then(res=>console.log(1))
+        .then(res=>{
+          if(res.status===203)  setStatus(-1);
+          else if(res.status===200){
+            setStatus(1)
+            setTimeout(() => {
+              window.location.href = '/owner-login';
+            }, 3000);
+          };
+        })
         .catch(error=>console.log(error))
       }
       else{
@@ -55,6 +64,12 @@ const OwnerRegister = () => {
       <div className="bg-white p-8 rounded shadow-md w-80">
         <h2 className="text-2xl mb-4">Register</h2>
         <form>
+          {status===-1 &&
+            <p className='text-red-500 text-center'>The user with this username already exist. either login or forget password</p>
+          }
+          {status===1 &&
+            <p className='text-green-500 self-center'>Successfully Registerd</p>
+          }
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600">First Name</label>
             <input type="text" name='fname' value={details.fname} onChange={handleChange} className="mt-1 p-2 w-full border rounded" />

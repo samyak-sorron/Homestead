@@ -14,11 +14,19 @@ const loginTenantController=(req,res)=>{
 }
 
 const registerTenantController=(req,res)=>{
-    if(tenantModel.findOne({email:req.body.email}))  res.status(201).json("Email already exist");
+    if(tenantModel.findOne({email:req.body.email}))  res.status(203).json("Email already exist");
     else{
-        tenantModel.create(req.body)
-        .then(tenant=> res.json(tenant))
-        .catch(error=>res.json(error))
+        const data=req.body;
+        ownerModel.create({
+        name:data.fname+' '+data.lname,
+        email:data.email,
+        password:data.password,
+        phone: data.phone        
+    })
+    .then(user=> {
+        if(user)    res.status(200).send({message:'data stored',success:true})
+    })
+    .catch(error=>res.json(error))
     }
 }
 

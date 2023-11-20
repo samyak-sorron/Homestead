@@ -10,6 +10,7 @@ import OwnerRegister from './pages/Owner/ownerResigter';
 import PorpertyList from './pages/Property/porpertyList';
 import TenantLogou from './pages/Tenant/tenantLogou';
 import OwnerLogout from './pages/Owner/ownerLogout';
+import AddProperty from './pages/Property/addProperty';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" exact element={<Home />} />
         <Route path="/propertyDetails/:property_id" element={<PropertyDetail />} />
         <Route path="/propertyList" element={<PorpertyList/>} />
+        <Route path="/addProperty" element={<AddProperty/>} />
 
         {/* Tenant */}
         <Route path="/tenant-login" element={<TenantLogin />} />
