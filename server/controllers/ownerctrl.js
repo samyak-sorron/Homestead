@@ -82,6 +82,7 @@ const loginOwnerController= async(req,res)=>{
 const listingOwnerController=()=>{
 
 };
+
 export{
     loginOwnerController,
     registerOwnerController,

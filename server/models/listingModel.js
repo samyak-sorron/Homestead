@@ -1,46 +1,72 @@
-import mongoose, { trusted } from 'mongoose';
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const listingSchema= new mongoose.Schema({
-    name:{
-
-        type:String,
-        required:true
+const houseSchema = new Schema({
+    title: {
+        type: String,
+        required: true
     },
-    address:{
-        type:String,
-        required:true
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: 'Owner',
+        required: true
     },
-    rent:{
+    address: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    state: {
+        type: String,
+        required: true
+    },
+    zipCode: {
+        type: String,
+        required: true
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    image: {
+        type: String,
+        required: true
+    },
+    rent: {
         type: Number,
-        required:true
+        required: true
+    },    
+    rooms: {
+        type: String,
+        required: true
+    },    
+    bathrooms: {
+        type: String,
+        required: true
     },
-    ownerId:{
-        type:mongoose.Schema.ObjectId,
-        // ref:'Owner',
-        required:true
+    leaseLength: {
+        type: String,
+        required: true
     },
-    description:{
-        type:String,
-        required:true
+    dateAvailable: {
+        type: Date,
+        required: true
     },
-    bedrooms:{
-        type:Number,
-        required:true
-    },
-    bathrooms:{
-        type:Number,
-        required:true
-    },
-    squreFeet:{
-        type:Number,
-        required:true
-    },
-    postalCode:{
-        type:String,
-        required:true
-    }
+    amenities: [
+        {
+            type: String,
+            required: true
+        }
+    ]
 });
 
-const listingModel= mongoose.model('Listing',listingSchema)
+const House = mongoose.model('House', houseSchema);
 
-export default listingModel;
+module.exports = House;
