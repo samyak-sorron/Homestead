@@ -3,6 +3,7 @@ import { Navbar, Sidebar } from '../../components'
 
 const OwnerDashboard = () => {
   const [name, setName] = useState('John Doe');
+  const [email, setEmail]= useState('John.Doe@gmail.com')
 
   useEffect(()=>{
     document.title="DashBoard";
@@ -16,6 +17,7 @@ const OwnerDashboard = () => {
         <Sidebar/>
         <div className='text-3xl'>
           <h1>Welcome {name}</h1>
+          <h3> Email : {email}</h3>
         </div>
       </div>
     </div>

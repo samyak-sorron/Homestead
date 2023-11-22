@@ -11,6 +11,8 @@ import PorpertyList from './pages/Property/porpertyList';
 import TenantLogou from './pages/Tenant/tenantLogou';
 import OwnerLogout from './pages/Owner/ownerLogout';
 import AddProperty from './pages/Property/addProperty';
+import Bills from './pages/Owner/bills';
+import Remainders from './pages/Owner/reminders';
 
 function App() {
   return (
@@ -34,6 +36,9 @@ function App() {
         <Route path="/owner-logout" element={<OwnerLogout />} />
         <Route path="/owner-register" element={<OwnerRegister/>} />
         <Route path="/owner-dashboard" element={<OwnerDashboard/>} />
+        <Route path="/owner-bills" element={<Bills/>}/>
+        <Route path="/owner-remainder" element={<Remainders/>}/>
+        
         
       </Routes>
     </Router>
