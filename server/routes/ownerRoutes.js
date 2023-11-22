@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginOwnerController, registerOwnerController } from '../controllers/ownerctrl.js';
+import { loginOwnerController, registerOwnerController,getOwnerByIdController } from '../controllers/ownerctrl.js';
 
 const router= express.Router();
 
@@ -10,5 +10,7 @@ router.route('/').get((req,res)=>{
 router.post('/login',loginOwnerController);
 
 router.post('/register',registerOwnerController);
+
+router.post('/getOwnerById',getOwnerByIdController);
 
 export default router;

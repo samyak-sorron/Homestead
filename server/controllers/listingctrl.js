@@ -23,10 +23,25 @@ const addProperty=(req,res)=>{
     .catch((err)=>res.status(400).send({error:err.errors[0].message}))
 }
 
-const fetchProperty=(req,res)=>{
-    
-}
+const  getAllPropertyController=async(req,res)=> {
+    try{
+        const users= await propertyModel.find({})
+        res.status(200).send({
+            success:true,
+            message:'Property data list',
+            data:users
+        })
+    }catch(error){
+        console.log(error)
+        res.status(500).send({
+            success: false,
+            message:'error while fetching Property',
+            error
+        })
+    }
+};
 
 export default {
-    addProperty
+    addProperty,
+    getAllPropertyController
 }

@@ -79,6 +79,25 @@ const loginOwnerController= async(req,res)=>{
     .catch(error=>res.json(error))
 };
 
+const getOwnerByIdController=async(req,res)=>{
+    try{
+        const owner = await ownerModel.findOne({_id:req.body.ownerId})
+        res.status(200).send({
+            success:true,
+            message:' Single user info fetch',
+            data:owner
+            
+        })
+    }catch(error){
+        console.log(error)
+        res.status(500).send({
+            success:false,error,
+            message: 'Error in Sigle info'
+        })
+    }
+}
+
+
 const listingOwnerController=()=>{
 
 };
@@ -86,5 +105,6 @@ const listingOwnerController=()=>{
 export{
     loginOwnerController,
     registerOwnerController,
+    getOwnerByIdController,
     listingOwnerController,
 }

@@ -36,9 +36,28 @@ const fetchData=(req,res)=>{
     
 }
 
+const getTenantByIdController=async(req,res)=>{
+    try{
+        const tenant = await tenantModel.findOne({_id:req.body.tenantId})
+        res.status(200).send({
+            success:true,
+            message:' Single user info fetch',
+            data:tenant
+            
+        })
+    }catch(error){
+        console.log(error)
+        res.status(500).send({
+            success:false,error,
+            message: 'Error in Sigle info'
+        })
+    }
+}
+
 
 
 export{
     loginTenantController,
-    registerTenantController
+    registerTenantController,
+    getTenantByIdController
 }
