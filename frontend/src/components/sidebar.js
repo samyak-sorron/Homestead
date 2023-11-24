@@ -67,15 +67,15 @@ useEffect(()=>{
             </a>
           </li>
           <li>
-            <a href="#" className="text-gray-700 flex mb-5">
+            <a href="/owner-houses" className="text-gray-700 flex mb-5">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2m7 0v-2a5.002 5.002 0 00-7.737 5.707"></path></svg>
-              <span className="ml-4">Budgets</span>
+              <span className="ml-4">Houses</span>
             </a>
           </li>
           <li>
-            <a href="#" className="text-gray-700 flex mb-5">
+            <a href="/owner-tenants" className="text-gray-700 flex mb-5">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-              <span className="ml-4">Payments</span>
+              <span className="ml-4">Tenants</span>
             </a>
           </li>
           <li>

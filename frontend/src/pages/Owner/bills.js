@@ -2,9 +2,6 @@ import React,{useState,useEffect} from 'react'
 import { Navbar, Sidebar } from '../../components'
 
 const Bills = () => {
-  const [name, setName] = useState('John Doe');
-  const [email, setEmail]= useState('John.Doe@gmail.com')
-
   useEffect(()=>{
     document.title="DashBoard";
   })

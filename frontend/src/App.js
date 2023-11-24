@@ -13,6 +13,8 @@ import OwnerLogout from './pages/Owner/ownerLogout';
 import AddProperty from './pages/Property/addProperty';
 import Bills from './pages/Owner/bills';
 import Remainders from './pages/Owner/reminders';
+import OwnerTenants from './pages/Owner/ownerTenants';
+import OwnerHouses from './pages/Owner/ownerHouses';
 
 function App() {
   return (
@@ -38,7 +40,8 @@ function App() {
         <Route path="/owner-dashboard" element={<OwnerDashboard/>} />
         <Route path="/owner-bills" element={<Bills/>}/>
         <Route path="/owner-remainder" element={<Remainders/>}/>
-        
+        <Route path="/owner-tenants" element={<OwnerTenants/>}/>
+        <Route path="/owner-houses" element={<OwnerHouses/>}/>
         
       </Routes>
     </Router>
