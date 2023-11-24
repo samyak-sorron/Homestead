@@ -39,17 +39,17 @@ const OwnerLogin = () => {
         .then(res => {
           if (res.ok) {
             localStorage.setItem('ownerLoginStatus',true);
-            // localStorage.setItem('ownerId',res.data.owner_id);
+
             return res.json();
           } else {
             throw new Error('Network response was not ok.');
           }
         })
         .then(data => {
-          
           if (data.success === true) {
             setLoggedin(true);
-
+            localStorage.setItem('ownerId',data.data._id);
+            
             setTimeout(() => {
               window.location.href = '/';
             }, 3000);

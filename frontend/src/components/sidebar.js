@@ -1,12 +1,40 @@
-import React, { useState } from 'react';
-
+import React,{useState,useEffect} from 'react'
+import axios from 'axios'
+const URL='http://localhost:8080/api/v1/owner';
 const Sidebar = () => {
   const [profilePic, setProfilePic] = useState(null);
+
+  const [owner,setowner]= useState([])
+  const ownerId=localStorage.getItem('ownerId')
+  const getOwnerInfo= async ()=> {
+    try{
+        const res = await axios.post(URL+'/getOwnerById',{ownerId: ownerId},
+        
+        {
+            headers:{
+                Authorization:`Bearer ${localStorage.getItem('token')}`
+            }
+        })
+        // console.log(res);
+        if(res.data.success){
+          setowner(res.data.data)
+        }
+    }catch(error){
+        console.log(error)
+    }
+};
+
+useEffect(()=>{
+  getOwnerInfo();
+},[]);
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     previewFile(file);
  };
+
+ 
+
 
   const previewFile = (file) => {
     const reader = new FileReader();
@@ -28,7 +56,7 @@ const Sidebar = () => {
           )}
           <input id="user-pic-upload" type="file" onChange={handleImageUpload} className="hidden" />
         </div>
-          <h1 className="text-2xl font-semibold align-middle mt-3">John Doe</h1>
+          <h1 className="text-2xl font-semibold align-middle mt-3">{owner.name}</h1>
       </div>
       <nav className="px-6 mt-10">
         <ul className="space-y-4">

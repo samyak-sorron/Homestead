@@ -8,6 +8,11 @@ const Bills = () => {
   useEffect(()=>{
     document.title="DashBoard";
   })
+  const data = [
+    { name: "Anom", bill: "b242", amount: "$1000" },
+    { name: "Megha", bill: "b234", amount: "$1500" },
+    { name: "Subham", bill: "b323", amount: "$600" },
+]
 
 
   return (
@@ -17,20 +22,31 @@ const Bills = () => {
         <Sidebar/>
         
         <div className='text-3xl max-w-full'>
-        <h2>Welcome to Bills Section</h2>
+        <h2 className="text-2xl font-semibold align-middle mt-3" >Welcome to Bills Section</h2>
         <br></br>
-          <div className='card m-2' >
-            <div className='card-body'>
+        <div className="App">
+           
+            <table class="table-auto" WIDTH="700">
+                <thead>
+                  <tr >
+                    <th class="px-4 py-2 text-lg">Bill No.</th>
+                    <th class="px-4 py-2 text-lg">Name</th>
+                    <th class="px-4 py-2 text-lg">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {data.map((val, key) => {
+                    return (
+                  <tr key={key}>
+                    <td class="border px-4 py-2 text-lg">{val.bill}</td>
+                    <td class="border px-4 py-2 text-lg">{val.name}</td>
+                    <td class="border px-4 py-2 text-lg">{val.amount}</td>
+                  </tr>
+                     )
+                    })}
 
-
-                <tr> 
-                    <td>Bill No</td>
-                    <td></td>
-                    <td>Tenant Name</td>
-                    <td>Bill Amount</td>
-                </tr>
-                
-            </div>
+  </tbody>
+</table>
         </div>
     
         </div>

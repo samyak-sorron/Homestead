@@ -71,7 +71,7 @@ const loginOwnerController= async(req,res)=>{
     ownerModel.findOne({email:email})
     .then(user=>{
         if(user){
-           if(user.password === password)   res.status(200).send({message:'success',success:true})
+           if(user.password === password)   res.status(200).send({message:'success',success:true , data:user})
            else res.status(201).send({message:"Incorrect Password",success:false})
         }
         else res.status(300).json("No User found")       
@@ -80,14 +80,41 @@ const loginOwnerController= async(req,res)=>{
 };
 
 const getOwnerByIdController=async(req,res)=>{
+    const data=req.body
+    console.log(data.ownerId)
     try{
-        const owner = await ownerModel.findOne({_id:req.body.ownerId})
-        res.status(200).send({
-            success:true,
-            message:' Single user info fetch',
-            data:owner
-            
-        })
+        if(ownerModel.findOne({_id:data.ownerId})){
+            await ownerModel.findOne({_id:data.ownerId})
+            .then(docs=>{
+                console.log("Result :",docs);
+                res.status(200).send({
+                    success:true,
+                    message:' Single user info fetch',
+                    data:docs
+                })
+            })
+            .catch((err)=>{
+                console.log(err);
+            });
+            // return data=>res.status(200).send({
+            //     success:true,
+            //     message:' Single user info fetch',
+            //     data:owner            
+            // });
+        }
+        else{
+            return data=>res.status(201).send({
+                success:false,
+                message:' User not avalilable'           
+            })
+        }
+        // await ownerModel.findOne({_id:data.ownerId})
+        // .then(data=>res.status(200).send({
+        //     success:true,
+        //     message:' Single user info fetch',
+        //     data:owner            
+        // }))
+        
     }catch(error){
         console.log(error)
         res.status(500).send({
