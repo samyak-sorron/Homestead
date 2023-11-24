@@ -7,6 +7,7 @@ import morgan from 'morgan'
 import connectDB from './config/db.js';
 import ownerRoutes from './routes/ownerRoutes.js'
 import tenantRoutes from './routes/tenantRoutes.js'
+import propertyRoutes from './routes/propertyRoutes.js'
 
 
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(morgan('dev'));
 
 app.use('/api/v1/owner',ownerRoutes);
 app.use('/api/v1/tenant',tenantRoutes);
+app.use('/api/v1/property',propertyRoutes);
 
 app.get('/',async(req,res)=>{
     res.send('hello Ladies!')

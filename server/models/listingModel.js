@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import mongoose from 'mongoose';
+import { Schema } from 'mongoose';
 
 const houseSchema = new Schema({
     title: {
@@ -69,4 +69,4 @@ const houseSchema = new Schema({
 
 const House = mongoose.model('House', houseSchema);
 
-module.exports = House;
+export default House

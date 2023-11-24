@@ -31,17 +31,18 @@ export default function Home() {
       </div>
       
       <div className="grid md:grid-cols-3 gap-5 sm:grid-cols-2 place-items-center">
-      {propertyData && propertyData.map((listing,index)=>
+      {/* {propertyData && propertyData.map(property=>
         <div className="">
           <Link to={`/propertyDetails/${index}`}>
           <Card
             id={index}
-            name={listing[index].name}
+            name={property[index].name}
             prompt="2 dogs under the street light"
             photo={listing[index]}
           /></Link>
         </div>
-      )}</div>
+      )} */}
+      </div>
       <div className="">
         <div className="grid md:grid-cols-3 gap-5 grid-cols-2 place-items-center">
       <div className="">

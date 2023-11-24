@@ -1,15 +1,23 @@
 import React, {useState} from 'react'
 
 const AddProperty = () => {
+
+  const ownerId = localStorage.getItem('ownerId')
+  // if(!ownerId){
+  //   setTimeout(() => {
+  //     window.location.href = '/';
+  //   }, 500);
+  // }
   const [formData, setFormData] = useState({
     title:'',
-    owner:'',
+    owner:ownerId,
     address: '',
     city: '',
     state: '',
     zipCode: '',
     country:'',
     description:'',
+    image:'',
     rent: '',
     rooms: '',
     bathrooms: '',
@@ -17,6 +25,8 @@ const AddProperty = () => {
     dateAvailable:'',
     amenities: [],
   });
+
+  
   
   const handleChange = (e) => {
       const {name,value} = e.target;
@@ -34,6 +44,13 @@ const AddProperty = () => {
         });
       }
     };
+
+    const handleFileChange=(event)=>{
+      setFormData({
+          ...formData,
+          [event.target.name]:event.target.files[0]
+      });
+    }
   
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -45,13 +62,19 @@ const AddProperty = () => {
       if (response.ok) {
         alert('House added successfully');
         setFormData({
+          title:'',
           address: '',
           city: '',
           state: '',
           zipCode: '',
+          country:'',
+          description:'',
+          image:'',
           rent: '',
           rooms: '',
           bathrooms: '',
+          leaseLength:'',
+          dateAvailable:'',
           amenities: [],
         });
       } else {
@@ -60,13 +83,26 @@ const AddProperty = () => {
     };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-      <div className="mb-4">
+    <form onSubmit={handleSubmit} className="mx-auto max-w-screen-xl bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 grid grid-cols-2 gap-5 mt-16">
+      <div className="mb-6">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+          Title
+        </label>
+        <input
+          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          id="address"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
           Address
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="address"
           value={formData.address}
@@ -74,12 +110,12 @@ const AddProperty = () => {
           required
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
           City
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="city"
           value={formData.city}
@@ -87,12 +123,12 @@ const AddProperty = () => {
           required
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
           State
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="state"
           value={formData.state}
@@ -100,12 +136,12 @@ const AddProperty = () => {
           required
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
           Zip Code
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="zipCode"
           value={formData.zipCode}
@@ -113,12 +149,46 @@ const AddProperty = () => {
           required
         />
       </div>
-      <div className="mb-4">
+      <div className="mb-6">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+          Country  
+        </label>
+        <input
+          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          id="address"
+          name="country"
+          value={formData.country}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="mb-6">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+          Property description
+        </label>
+        <textarea
+          className="shadow border-b-2 rounded w-full py-5 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+          id="address"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-6">
+      <label htmlFor="Property-Image" className="block text-gray-700 text-sm font-bold mb-2">Featured Image</label>
+      <div className="">
+          <input type="file"  onChange={handleFileChange}  name='image' id="property_image" className="" />
+      </div>
+      </div>
+
+      <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
           Rooms
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="rooms"
           value={formData.rooms}
@@ -127,12 +197,12 @@ const AddProperty = () => {
         />
       </div>
       
-      <div className="mb-4">
+      <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
           Bathrooms
         </label>
         <input
-          className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="bathrooms"
           value={formData.bathrooms}
@@ -142,7 +212,7 @@ const AddProperty = () => {
       </div>
 
       {/* ... repeat for other form fields like city, state, zipCode, rent, rooms, bathrooms ... */}
-      <div className="mb-4">
+      <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="amenities">
           Amenities
         </label>

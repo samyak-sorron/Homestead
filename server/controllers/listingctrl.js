@@ -40,8 +40,22 @@ const  getAllPropertyController=async(req,res)=> {
         })
     }
 };
+const getPropertyByIdController=async(req,res)=> {
+    const data= req.body
 
-export default {
+    await propertyModel.findOne({_id:data._id})
+    .then((docs)=>{
+        res.status(200).send({
+            success:true,
+            message:'Property data of the id',
+            data:docs
+        })
+    })
+    .catch(error=>console.log(error))
+}
+
+export{
     addProperty,
-    getAllPropertyController
+    getAllPropertyController,
+    getPropertyByIdController,
 }
