@@ -41,11 +41,15 @@ console.log(owner)
       <Navbar/>
       <div className='grid grid-cols-4'>
         <Sidebar/>
-        <div className='text-3xl '>
+        <div className=' '>
           <h1 className="text-2xl font-semibold align-middle mt-3">Welcome {owner.name}</h1>
           <h3 className="text-2xl font-semibold align-middle mt-3"> Email : {owner.email}</h3>
           <h3 className="text-2xl font-semibold align-middle mt-3"> Phone :{owner.phone}</h3>
+
+          
         </div>
+
+        
       </div>
     </div>
   )

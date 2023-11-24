@@ -7,9 +7,9 @@ const Card = ({ _id, name, prompt, photo }) => (
       src={photo}
       alt={prompt}
     />
-    <div className='p-3'>
+    <div className='p-3' class="text-lg">
       <div className='flex justify-between'>
-        <div>location</div>
+        <div >location</div>
         <div className=''>rating</div>
       </div>
       <div>$5000/mo</div>
