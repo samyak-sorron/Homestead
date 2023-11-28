@@ -15,7 +15,7 @@ const PorpertyList = () => {
     const fetchHouses = async () => {
       try {
         const response = await axios.get(URL+'/get-all-property');
-        setHouses(response.data);
+        setHouses(response.data.data);
         setLoading(false);
       } catch (error) {
         setError(error.message);
@@ -33,21 +33,34 @@ const PorpertyList = () => {
   if (error) {
     return <h1>Error: {error}</h1>;
   }
-
+// console.log(houses);
 
   return (
     <div className='mx-auto max-w-screen-xl mt-20'>
-      {houses.map(house=>(
+      <h1 className="text-2xl font-semibold align-middle mt-3">Here is a List of All Property </h1>
+     {houses.length > 0 && houses.map((house)=>(
+      // console.log("bwkgjjjglj"),
         <Link to={`/propertyDetails/${house.id}`}>
         <Card
-            _id={house._id}
-            name={house.title}
-            prompt={"hello"}
+            _id={house.id}
+            name={house.name}
+            prompt={house.title}
             photo={house.image}
         /></Link>
       ))}
-        
+       {/* <div className="">
+          <Link to={`/propertyDetails/2`}>
+          <Card 
+            id={houses._id}
+            name={houses.name}
+            prompt={houses.title}
+            photo={houses.image}
+          /></Link>
+        </div> */}
+        <h1>SJADKFASDFASDFAS</h1>
     </div>
+
+    
   )
 }
 

@@ -7,9 +7,9 @@ router.route('/').get((req,res)=>{
     res.status(200).send('property routes working')
 })
 
-router.post('/addProperty',addProperty);
+router.post('/add-house',addProperty);
 
-router.post('/get-all-property',getAllPropertyController);
+router.get('/get-all-property',getAllPropertyController);
 
 router.post('/get-property',getPropertyByIdController);
 

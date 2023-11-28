@@ -1,16 +1,29 @@
 import ownerModel from '../models/ownerModel.js'
+import propertyModel from '../models/listingModel.js';
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 // const moment = require('moment')
 
-
+// const existingOwnerId = "654b3975788341f1a4321602";
 // async function insert(){
-// await ownerModel.create({
-//     name:"Vishal Yadav",
-//     email:"vishal@gmail.com",
-//     password:"Vishal123",
-//     phone: "9171619017"
+// await propertyModel.create({
+//     title:"Street House",
+//     owner: existingOwnerId,
+//     address:"juetguna",
+//     city:"Guna",
+//     state:"Madhya Pradesh",
+//     zipCode:"473226",
+//     country:"India",
+//     description:"A house is a single-unit residential building. It may range in complexity from a rudimentary hut to a complex structure of wood, masonry, concrete or other material, outfitted with plumbing, electrical, and heating, ventilation, and air conditioning systems.",
+//     image:`D:\Major Project Homestead1\Homestead\frontend\src\assets\houses.png`,
+//     rent:"1000",
+//     rooms:"3",
+//     bathrooms:"4",
+//     leaseLength:"2 months",
+//     dateAvailable:new Date(),
+//     amenities:"wifi , cctv, noise cancellation"
+    
 // });
 // }
 // insert();
