@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Card } from '../../components'
+import { house1,house,houses,city } from '../../assets';
 
 const URL='http://localhost:8080/api/v1/property';
 
@@ -38,26 +39,21 @@ const PorpertyList = () => {
   return (
     <div className='mx-auto max-w-screen-xl mt-20'>
       <h1 className="text-2xl font-semibold align-middle mt-3">Here is a List of All Property </h1>
+      <div className="grid md:grid-cols-3 gap-5 sm:grid-cols-2 place-items-center">
      {houses.length > 0 && houses.map((house)=>(
-      // console.log("bwkgjjjglj"),
-        <Link to={`/propertyDetails/${house.id}`}>
+      console.log(house),
+        <Link to={`/propertyDetails/${house._id}`}>
         <Card
-            _id={house.id}
+            _id={house._id}
             name={house.name}
             prompt={house.title}
-            photo={house.image}
+            photo={house1}
+            city={house.city}
+            rent={house.rent}
+
         /></Link>
       ))}
-       {/* <div className="">
-          <Link to={`/propertyDetails/2`}>
-          <Card 
-            id={houses._id}
-            name={houses.name}
-            prompt={houses.title}
-            photo={houses.image}
-          /></Link>
-        </div> */}
-        <h1>SJADKFASDFASDFAS</h1>
+      </div>
     </div>
 
     

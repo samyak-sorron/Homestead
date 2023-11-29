@@ -1,8 +1,9 @@
 import { Card, Navbar } from "../components"
 import { useState, useEffect } from 'react'
+import axios from 'axios';
 import { Link } from "react-router-dom"
 import { city ,house1  } from "../assets"
-
+const URL='http://localhost:8080/api/v1/property';
 export default function Home() {
   
   useEffect(() => {
@@ -11,7 +12,32 @@ export default function Home() {
 
   const [propertyData, setPropertyData] = useState([])
 
-  // const [id, setId] = useState(null)
+  const [houses, setHouses] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchHouses = async () => {
+      try {
+        const response = await axios.get(URL+'/get-all-property');
+        setHouses(response.data.data);
+        setLoading(false);
+      } catch (error) {
+        setError(error.message);
+        setLoading(false);
+      }
+    };
+
+    fetchHouses();
+  }, []);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>Error: {error}</h1>;
+  }
   
   return (
     <div>
@@ -31,49 +57,21 @@ export default function Home() {
       </div>
       
       <div className="grid md:grid-cols-3 gap-5 sm:grid-cols-2 place-items-center">
-      {/* {propertyData && propertyData.map(property=>
-        <div className="">
-          <Link to={`/propertyDetails/${index}`}>
-          <Card
-            id={index}
-            name={property[index].name}
-            prompt="2 dogs under the street light"
-            photo={listing[index]}
-          /></Link>
-        </div>
-      )} */}
+      {houses.length > 0 && houses.map((house)=>(
+      console.log(house._id),
+        <Link to={`/propertyDetails/${house._id}`}>
+        <Card
+            _id={house._id}
+            name={house.name}
+            prompt={house.title}
+            photo={house1}
+            city={house.city}
+            rent={house.rent}
+
+        /></Link>
+      ))}
       </div>
-      <div className="">
-        <div className="grid md:grid-cols-3 gap-5 grid-cols-2 place-items-center">
-      <div className="">
-          <Link to={`/propertyDetails/2`}>
-          <Card
-            id={2}
-            name={"property"}
-            prompt="2 dogs under the street light"
-            photo={house1}
-          /></Link>
-        </div>
-        <div className="">
-          <Link to={`/propertyDetails/3`}>
-          <Card
-            id={3}
-            name={"property"}
-            prompt="2 dogs under the street light"
-            photo={house1}
-          /></Link>
-        </div>
-        <div className="">
-          <Link to={`/propertyDetails/4`}>
-          <Card
-            id={4}
-            name={"property"}
-            prompt="2 dogs under the street light"
-            photo={house1}
-          /></Link>
-        </div>
-        </div>
-        </div>
+      
         </div>
     </div>
   )

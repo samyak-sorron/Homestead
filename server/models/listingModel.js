@@ -37,7 +37,7 @@ const houseSchema = new Schema({
     },
     image: {
         type: String,
-        required: true
+        // required: true
     },
     rent: {
         type: Number,

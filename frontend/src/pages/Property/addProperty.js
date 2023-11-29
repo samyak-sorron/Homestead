@@ -198,6 +198,19 @@ const AddProperty = () => {
           required
         />
       </div>
+      <div className="mb-6">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+          Rent
+        </label>
+        <input
+          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          id="address"
+          name="rent"
+          value={formData.rent}
+          onChange={handleChange}
+          required
+        />
+      </div>
       
       <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
