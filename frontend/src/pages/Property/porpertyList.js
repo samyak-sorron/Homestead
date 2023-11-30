@@ -38,12 +38,13 @@ const PorpertyList = () => {
   return (
     <div className='mx-auto max-w-screen-xl mt-20'>
       {houses.map(house=>(
-        <Link to={`/propertyDetails/${house.id}`}>
+        <Link to={`/propertyDetails/${house._id}`}>
         <Card
-            _id={house._id}
-            name={house.title}
-            prompt={"hello"}
-            photo={house.image}
+          name={house.title}
+          prompt={house.title}
+          photo={house.image}
+          location={house.location}
+          rating={house.rating}
         /></Link>
       ))}
         

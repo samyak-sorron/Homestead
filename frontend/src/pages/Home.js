@@ -1,15 +1,25 @@
 import { Card, Navbar } from "../components"
 import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
-import { city ,house1  } from "../assets"
+import axios from 'axios'
+import {city} from '../assets/index.js'
+
+const URL='http://localhost:8080/api/v1/property';
 
 export default function Home() {
+
+  const [propertyData, setPropertyData] = useState([])
   
   useEffect(() => {
     document.title='Homestead';
-  }, [])
 
-  const [propertyData, setPropertyData] = useState([])
+    try {
+      const response = axios.get(URL+'/get-all-property');
+      setPropertyData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [])
 
   // const [id, setId] = useState(null)
   
@@ -31,50 +41,20 @@ export default function Home() {
       </div>
       
       <div className="grid md:grid-cols-3 gap-5 sm:grid-cols-2 place-items-center">
-      {/* {propertyData && propertyData.map(property=>
+      {propertyData && propertyData.map(property=>
         <div className="">
-          <Link to={`/propertyDetails/${index}`}>
+          <Link to={`/propertyDetails/${property._id}`}>
           <Card
-            id={index}
-            name={property[index].name}
-            prompt="2 dogs under the street light"
-            photo={listing[index]}
-          /></Link>
+          name={property.title}
+          prompt={property.title}
+          photo={property.image}
+          location={property.location}
+          rating={property.rating}
+        /></Link>
         </div>
-      )} */}
+      )}
       </div>
-      <div className="">
-        <div className="grid md:grid-cols-3 gap-5 grid-cols-2 place-items-center">
-      <div className="">
-          <Link to={`/propertyDetails/2`}>
-          <Card
-            id={2}
-            name={"property"}
-            prompt="2 dogs under the street light"
-            photo={house1}
-          /></Link>
-        </div>
-        <div className="">
-          <Link to={`/propertyDetails/3`}>
-          <Card
-            id={3}
-            name={"property"}
-            prompt="2 dogs under the street light"
-            photo={house1}
-          /></Link>
-        </div>
-        <div className="">
-          <Link to={`/propertyDetails/4`}>
-          <Card
-            id={4}
-            name={"property"}
-            prompt="2 dogs under the street light"
-            photo={house1}
-          /></Link>
-        </div>
-        </div>
-        </div>
-        </div>
-    </div>
+      </div>
+      </div>
   )
 }

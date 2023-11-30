@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import { Card,Navbar, Sidebar } from '../../components'
 import { Link } from "react-router-dom"
-import { city ,house1  } from "d:/Major Project Homestead1/Homestead/frontend/src/assets/index"
+import { city ,house1  } from "../../assets/index.js"
 const OwnerHouses = () => {
   useEffect(()=>{
     document.title="DashBoard";

@@ -19,8 +19,9 @@ const addProperty=(req,res)=>{
         leaseLength:data.leaseLength,
         dateAvailable:data.dateAvailable,
         amenities:data.amenities
-    }).then(()=>res.status(200).send({message:'data stored',success:true}))
-    .catch((err)=>res.status(400).send({error:err.errors[0].message}))
+    })
+    .then(()=>res.status(200).send({message:'data stored',success:true}))
+    .catch((err)=>res.status(400).send({message:"data not stored",error:err}))
 }
 
 const  getAllPropertyController=async(req,res)=> {

@@ -103,7 +103,7 @@ const OwnerRegister = () => {
           </button>
         </form>
         <p className="text-sm mt-4">
-          Already have an account? <Link to="/tenant-login" className="text-green-500">Login here</Link>.
+          Already have an account? <Link to="/owner-login" className="text-green-500">Login here</Link>.
         </p>
       </div>
     </div>

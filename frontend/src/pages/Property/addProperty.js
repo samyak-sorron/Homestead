@@ -1,13 +1,16 @@
 import React, {useState} from 'react'
 
+const URL='http://localhost:8080/api/v1/property';
+
+
 const AddProperty = () => {
 
   const ownerId = localStorage.getItem('ownerId')
-  // if(!ownerId){
-  //   setTimeout(() => {
-  //     window.location.href = '/';
-  //   }, 500);
-  // }
+  if(!ownerId){
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 500);
+  }
   const [formData, setFormData] = useState({
     title:'',
     owner:ownerId,
@@ -54,13 +57,13 @@ const AddProperty = () => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      const response = await fetch('/add-house', {
+      await fetch(URL+'/addProperty', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-      });
-      if (response.ok) {
-        alert('House added successfully');
+      }).then(res=>{
+        if(res.success)  alert('House added successfully');
+        else alert('error in uploading, Kindly try again')
         setFormData({
           title:'',
           address: '',
@@ -77,9 +80,8 @@ const AddProperty = () => {
           dateAvailable:'',
           amenities: [],
         });
-      } else {
-        alert('Error adding house');
-      }
+      })
+      .catch(error=>console.log(error))
     };
 
   return (
@@ -89,7 +91,7 @@ const AddProperty = () => {
           Title
         </label>
         <input
-          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          className="border-b-2 p-2 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="title"
           value={formData.title}
@@ -102,7 +104,7 @@ const AddProperty = () => {
           Address
         </label>
         <input
-          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          className="border-b-2 px-2 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="address"
           value={formData.address}
@@ -115,7 +117,7 @@ const AddProperty = () => {
           City
         </label>
         <input
-          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          className="border-b-2 px-2 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="city"
           value={formData.city}
@@ -128,7 +130,7 @@ const AddProperty = () => {
           State
         </label>
         <input
-          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          className="border-b-2 px-2 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="state"
           value={formData.state}
@@ -141,7 +143,7 @@ const AddProperty = () => {
           Zip Code
         </label>
         <input
-          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          className="border-b-2 px-2 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="zipCode"
           value={formData.zipCode}
@@ -154,7 +156,7 @@ const AddProperty = () => {
           Country  
         </label>
         <input
-          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          className="border-b-2 px-2 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="country"
           value={formData.country}
@@ -188,7 +190,7 @@ const AddProperty = () => {
           Rooms
         </label>
         <input
-          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          className="border-b-2 px-2 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="rooms"
           value={formData.rooms}
@@ -202,10 +204,39 @@ const AddProperty = () => {
           Bathrooms
         </label>
         <input
-          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          className="border-b-2 px-2 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
           id="address"
           name="bathrooms"
           value={formData.bathrooms}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-6">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+          Lease length
+        </label>
+        <input
+          className="border-b-2 px-2 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          id="address"
+          name="leaseLength"
+          value={formData.leaseLength}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div className="mb-6">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+          Date Available
+        </label>
+        <input
+          className="border-b-2 px-2 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          id="address"
+          type='date'
+          name="dateAvailable"
+          value={formData.dateAvailable}
           onChange={handleChange}
           required
         />
