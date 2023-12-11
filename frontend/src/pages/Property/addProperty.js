@@ -1,8 +1,6 @@
 import React, {useState} from 'react'
 
-const URL='http://localhost:8080/api/v1/property';
-
-
+const URL='http://localhost:8080/api/v1/property'
 const AddProperty = () => {
 
   const ownerId = localStorage.getItem('ownerId')
@@ -57,7 +55,8 @@ const AddProperty = () => {
   
     const handleSubmit = async (e) => {
       e.preventDefault();
-      await fetch(URL+'/addProperty', {
+      
+      const response = await fetch(URL + '/add-house', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -194,6 +193,19 @@ const AddProperty = () => {
           id="address"
           name="rooms"
           value={formData.rooms}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className="mb-6">
+        <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="address">
+          Rent
+        </label>
+        <input
+          className="border-b-2 px-10 border-red-500 focus:border-red-600 focus:outline-none text-gray-700 leading-tight"
+          id="address"
+          name="rent"
+          value={formData.rent}
           onChange={handleChange}
           required
         />

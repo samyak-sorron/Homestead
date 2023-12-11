@@ -2,7 +2,8 @@ import propertyModel from '../models/listingModel.js'
 
 const addProperty=(req,res)=>{
     const data=req.body;
-
+    console.log("kjhjgkjlhkh")
+    console.log(data.title);
     propertyModel.create({
         title:data.title,
         owner:data.owner,
@@ -17,11 +18,10 @@ const addProperty=(req,res)=>{
         rooms:data.rooms,
         bathrooms:data.bathrooms,
         leaseLength:data.leaseLength,
-        dateAvailable:data.dateAvailable,
+        dateAvailable:new Date(),
         amenities:data.amenities
-    })
-    .then(()=>res.status(200).send({message:'data stored',success:true}))
-    .catch((err)=>res.status(400).send({message:"data not stored",error:err}))
+    }).then(()=>res.status(200).send({message:'data stored',success:true}))
+    .catch((err)=>res.status(400).send({error:err.errors[0]}))
 }
 
 const  getAllPropertyController=async(req,res)=> {
@@ -42,9 +42,10 @@ const  getAllPropertyController=async(req,res)=> {
     }
 };
 const getPropertyByIdController=async(req,res)=> {
-    const data= req.body
+    const data= req.body.propertyId.property_id
 
-    await propertyModel.findOne({_id:data._id})
+    console.log(data)
+    await propertyModel.findOne({_id:data})
     .then((docs)=>{
         res.status(200).send({
             success:true,

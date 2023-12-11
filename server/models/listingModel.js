@@ -37,7 +37,7 @@ const houseSchema = new Schema({
     },
     image: {
         type: String,
-        required: true
+        // required: true
     },
     rent: {
         type: Number,
@@ -67,6 +67,6 @@ const houseSchema = new Schema({
     ]
 });
 
-const House = mongoose.model('House', houseSchema);
+const propertyModel = mongoose.model('House', houseSchema);
 
-export default House
+export default propertyModel
